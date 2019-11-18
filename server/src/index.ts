@@ -1,7 +1,7 @@
 import express from 'express';
 import { ApolloServer, gql } from 'apollo-server-express';
 
-import { GRAPHQL_SERVER_PORT, GRAPHQL_SERVER_PATH } from '../configs/server';
+import { GRAPHQL_SERVER_PORT, GRAPHQL_SERVER_PATH } from '../configs/config.server';
 
 const typeDefs = gql`
   type Query {
