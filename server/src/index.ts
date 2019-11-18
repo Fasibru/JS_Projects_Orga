@@ -1,6 +1,8 @@
 import express from 'express';
 import { ApolloServer, gql } from 'apollo-server-express';
 
+import { GRAPHQL_SERVER_PORT, GRAPHQL_SERVER_PATH } from '../configs/server';
+
 const typeDefs = gql`
   type Query {
     hello: String
@@ -22,9 +24,9 @@ const server = new ApolloServer({
 });
 
 const app = express();
-server.applyMiddleware({ app });
+server.applyMiddleware({ app, path: `/${GRAPHQL_SERVER_PATH}` });
 
 app.listen(
-  { port: 4000 },
-  () => console.log(`Server ready at http://localhost:4000${server.graphqlPath}`),
+  { port: GRAPHQL_SERVER_PORT },
+  () => console.log(`Server ready at http://localhost:${GRAPHQL_SERVER_PORT}${server.graphqlPath}`),
 );
