@@ -1,4 +1,4 @@
-// import required schemas for Projects and Packages
+// import required schemas for Projects, Packages and User
 
 /*
 # Fetch projects with following data:
