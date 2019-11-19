@@ -8,6 +8,7 @@ const projectSchema = gql`
 
   type Project {
     id: ID!
+    title: String
     dateCreated: String
     dateModified: String
     repositoryLink: String
@@ -17,6 +18,10 @@ const projectSchema = gql`
     numberOutdatedDevDependencies: Int
     numberSecurityIssues: Int
     description: String
+  }
+
+  type Mutation {
+    createProject(title: String!): Project!
   }
 `;
 
