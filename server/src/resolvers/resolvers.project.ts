@@ -46,7 +46,11 @@ const projectResolvers = {
         description: 'Dummy2',
       };
 
-      // models[id] = project;
+      const stringId = String(id);
+
+      Object.assign(models, {
+        stringId: project,
+      });
 
       return project;
     },
