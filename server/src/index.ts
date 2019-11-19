@@ -1,28 +1,17 @@
 import express from 'express';
-import { ApolloServer, gql } from 'apollo-server-express';
+import { ApolloServer } from 'apollo-server-express';
 
 import { GRAPHQL_SERVER_PORT, GRAPHQL_SERVER_PATH } from '../configs/config.server';
-import projectSchema from './schema/schema.project';
-import projectResolvers from './resolvers/resolvers.project';
-
-// const typeDefs = gql`
-//   type Query {
-//     hello: String
-//   }
-// `;
-
-// const resolvers = {
-//   Query: {
-//     hello: () => 'Hello world!',
-//   },
-// };
-
-// const schema = foo;
-// const resolvers = foo;
+import typeDefs from './schema/index';
+import resolvers from './resolvers/index';
+import models from './models/index';
 
 const server = new ApolloServer({
-  typeDefs: projectSchema,
-  resolvers: projectResolvers,
+  typeDefs,
+  resolvers,
+  context: {
+    models,
+  },
 });
 
 const app = express();

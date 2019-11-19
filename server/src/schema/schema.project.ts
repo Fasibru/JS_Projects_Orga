@@ -20,8 +20,23 @@ const projectSchema = gql`
     description: String
   }
 
+  input ProjectInput {
+    title: String
+    dateCreated: String
+    dateModified: String
+    repositoryLink: String
+    numberDependencies: Int
+    numberDevDependencies: Int
+    numberOutdatedDependencies: Int
+    numberOutdatedDevDependencies: Int
+    numberSecurityIssues: Int
+    description: String
+  }
+
   type Mutation {
     createProject(title: String!): Project!
+    FOOdeleteProject(id: ID!): Boolean!
+    FOOupdateProject(id: ID!, data: ProjectInput!): Project!
   }
 `;
 

@@ -1,65 +1,36 @@
-// const mockProjects = {
-//   1: {
-//     id: '1',
-//     dateCreated: '2019-11-18',
-//     dateModified: '2019-11-19',
-//     repositoryLink: 'http://test.de',
-//     numberDependencies: 6,
-//     numberDevDependencies: 3,
-//     numberOutdatedDependencies: 1,
-//     numberOutdatedDevDependencies: 0,
-//     numberSecurityIssues: 0,
-//     description: 'Dummy',
-//   },
-//   2: {
-//     id: '2',
-//     dateCreated: '2015-11-18',
-//     dateModified: '2016-11-19',
-//     repositoryLink: 'http://test2.de',
-//     numberDependencies: 21,
-//     numberDevDependencies: 30,
-//     numberOutdatedDependencies: 11,
-//     numberOutdatedDevDependencies: 6,
-//     numberSecurityIssues: 5,
-//     description: 'Dummy2',
-//   },
-// };
-const mockProjects = [
-  {
-    id: '1',
-    title: 'Test 1',
-    dateCreated: '2019-11-18',
-    dateModified: '2019-11-19',
-    repositoryLink: 'http://test.de',
-    numberDependencies: 6,
-    numberDevDependencies: 3,
-    numberOutdatedDependencies: 1,
-    numberOutdatedDevDependencies: 0,
-    numberSecurityIssues: 0,
-    description: 'Dummy',
-  },
-  {
-    id: '2',
-    title: 'Test 2',
-    dateCreated: '2015-11-18',
-    dateModified: '2016-11-19',
-    repositoryLink: 'http://test2.de',
-    numberDependencies: 21,
-    numberDevDependencies: 30,
-    numberOutdatedDependencies: 11,
-    numberOutdatedDevDependencies: 6,
-    numberSecurityIssues: 5,
-    description: 'Dummy2',
-  },
-];
+interface IModels {
+  id: string;
+  title: string;
+  dateCreated: string;
+  dateModified: string;
+  repositoryLink: string;
+  numberDependencies: number;
+  numberDevDependencies: number;
+  numberOutdatedDependencies: number;
+  numberOutdatedDevDependencies: number;
+  numberSecurityIssues: number;
+  description: string;
+}
 
 const projectResolvers = {
   Query: {
-    project: (root: unknown, { id }: { id: number }) => mockProjects[id - 1],
-    projects: () => mockProjects,
+    project: (
+      root: unknown,
+      { id }: { id: string },
+      { models }: { models: object },
+    ) => Object.values(models)[Number(id) - 1],
+    projects: (
+      root: unknown,
+      args: null,
+      { models } : { models: unknown },
+    ) => Object.values(models),
   },
   Mutation: {
-    createProject: (root: unknown, { title }: { title: string}) => {
+    createProject: (
+      root: unknown,
+      { title }: { title: string},
+      { models }: { models: object },
+    ) => {
       const id = Math.floor((Math.random() * 100));
       const project = {
         id: String(id),
@@ -75,7 +46,7 @@ const projectResolvers = {
         description: 'Dummy2',
       };
 
-      mockProjects[id] = project;
+      // models[id] = project;
 
       return project;
     },

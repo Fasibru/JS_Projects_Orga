@@ -1,3 +1,8 @@
+import projectSchema from './schema.project';
+
+const typeDefs = projectSchema;
+
+export default typeDefs;
 // import required schemas for Projects, Packages and User
 
 /*
