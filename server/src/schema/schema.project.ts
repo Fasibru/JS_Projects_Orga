@@ -1,7 +1,7 @@
 import { gql } from 'apollo-server-express';
 
 const projectSchema = gql`
-  type Query {
+  extend type Query {
     project(id: ID!): Project
     projects: [Project]!
   }
@@ -33,7 +33,7 @@ const projectSchema = gql`
     description: String
   }
 
-  type Mutation {
+  extend type Mutation {
     createProject(title: String!): Project!
     FOOdeleteProject(id: ID!): Boolean!
     FOOupdateProject(id: ID!, data: ProjectInput!): Project!

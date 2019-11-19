@@ -1,8 +1,23 @@
+import { gql } from 'apollo-server-express';
+
 import projectSchema from './schema.project';
 
-const typeDefs = projectSchema;
+/*
+Empty underscore fields with a Boolean type,
+because there is no official way of completing this action
+of schema stitching yet.
+*/
+const linkSchema = gql`
+  type Query {
+    _: Boolean
+  }
 
-export default typeDefs;
+  type Mutation {
+    _: Boolean
+  }
+`;
+
+export default [linkSchema, projectSchema];
 // import required schemas for Projects, Packages and User
 
 /*
