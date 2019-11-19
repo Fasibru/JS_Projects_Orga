@@ -26,7 +26,7 @@
 // };
 const mockProjects = [
   {
-    _id: '1',
+    id: '1',
     dateCreated: '2019-11-18',
     dateModified: '2019-11-19',
     repositoryLink: 'http://test.de',
@@ -38,7 +38,7 @@ const mockProjects = [
     description: 'Dummy',
   },
   {
-    _id: '2',
+    id: '2',
     dateCreated: '2015-11-18',
     dateModified: '2016-11-19',
     repositoryLink: 'http://test2.de',
@@ -53,7 +53,7 @@ const mockProjects = [
 
 const projectResolvers = {
   Query: {
-    project: ({}, { id }: { id: number }) => mockProjects[id - 1],
+    project: (root: unknown, { id }: { id: number }) => mockProjects[id - 1],
     projects: () => mockProjects,
   },
 };

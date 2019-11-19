@@ -7,7 +7,7 @@ const projectSchema = gql`
   }
 
   type Project {
-    _id: ID!
+    id: ID!
     dateCreated: String
     dateModified: String
     repositoryLink: String
