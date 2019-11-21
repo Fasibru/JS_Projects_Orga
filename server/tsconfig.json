@@ -1,7 +1,13 @@
 {
   "compilerOptions": {
+    "outDir": "./dist",
     "sourceMap": true,
     "noImplicitAny": true,
     "esModuleInterop": true,
-  }
+    "allowSyntheticDefaultImports": true,
+  },
+  "include": [
+    "src",
+    "configs"
+  ]
 }

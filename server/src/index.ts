@@ -1,10 +1,20 @@
+import 'dotenv/config';
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
+import mongoose from 'mongoose';
 
 import { GRAPHQL_SERVER_PORT, GRAPHQL_SERVER_PATH } from '../configs/config.server';
 import typeDefs from './schema/index';
 import resolvers from './resolvers/index';
 import models from './models/index';
+
+import dbConnection from './models/index';
+
+// database connection
+dbConnection();
+mongoose.connection.on('error', (error) => {
+  console.log(`MongoDB ERROR: ${error}`);
+});
 
 const server = new ApolloServer({
   typeDefs,
