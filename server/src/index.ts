@@ -6,9 +6,8 @@ import mongoose from 'mongoose';
 import { GRAPHQL_SERVER_PORT, GRAPHQL_SERVER_PATH } from '../configs/config.server';
 import typeDefs from './schema/index';
 import resolvers from './resolvers/index';
-import models from './models/index';
 
-import dbConnection from './models/index';
+import dbConnection, { models } from './models/index';
 
 // database connection
 dbConnection();

@@ -13,7 +13,7 @@ export interface ProjectSchemaType extends Document {
   description: string;
 }
 
-export const ProjectSchema: Schema = new Schema({
+const ProjectSchema: Schema = new Schema({
   dateCreated: {
     type: Date,
     default: Date.now,
@@ -44,29 +44,4 @@ export const ProjectSchema: Schema = new Schema({
   },
 });
 
-export const mockProjects = {
-  1: {
-    id: '1',
-    dateCreated: '2019-11-18',
-    dateModified: '2019-11-19',
-    repositoryLink: 'http://test.de',
-    numberDependencies: 6,
-    numberDevDependencies: 3,
-    numberOutdatedDependencies: 1,
-    numberOutdatedDevDependencies: 0,
-    numberSecurityIssues: 0,
-    description: 'Dummy',
-  },
-  2: {
-    id: '2',
-    dateCreated: '2015-11-18',
-    dateModified: '2016-11-19',
-    repositoryLink: 'http://test2.de',
-    numberDependencies: 21,
-    numberDevDependencies: 30,
-    numberOutdatedDependencies: 11,
-    numberOutdatedDevDependencies: 6,
-    numberSecurityIssues: 5,
-    description: 'Dummy2',
-  },
-};
+export default ProjectSchema;
