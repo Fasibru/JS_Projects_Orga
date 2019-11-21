@@ -1,4 +1,37 @@
-const mockProjects = {
+import { Schema } from 'mongoose';
+
+export const ProjectSchema: Schema = new Schema({
+  dateCreated: {
+    type: Date,
+    default: Date.now,
+  },
+  dateModified: {
+    type: Date,
+  },
+  repositoryLink: {
+    type: String,
+  },
+  numberDependencies: {
+    type: Number,
+  },
+  numberDevDependencies: {
+    type: Number,
+  },
+  numberOutdatedDependencies: {
+    type: Number,
+  },
+  numberOutdatedDevDependencies: {
+    type: Number,
+  },
+  numberSecurityIssues: {
+    type: Number,
+  },
+  description: {
+    type: String,
+  },
+});
+
+export const mockProjects = {
   1: {
     id: '1',
     dateCreated: '2019-11-18',
@@ -24,5 +57,3 @@ const mockProjects = {
     description: 'Dummy2',
   },
 };
-
-export default mockProjects;
