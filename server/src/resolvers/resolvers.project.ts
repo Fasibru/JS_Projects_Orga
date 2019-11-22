@@ -1,9 +1,9 @@
 import mongoose from 'mongoose';
 
-import { ProjectSchemaType } from '../models/types';
+import { ProjectType, ProjectSchemaType } from '../models/types';
 
 interface Models {
-  Projects: mongoose.Model<ProjectSchemaType, {}>
+  Projects: mongoose.Model<ProjectSchemaType, {}>;
 }
 
 const projectResolvers = {
@@ -24,7 +24,7 @@ const projectResolvers = {
       root: unknown,
       { title }: { title: string},
       { models }: { models: Models },
-    ) => {
+    ): ProjectType => {
       const project = {
         title,
         dateCreated: new Date().toISOString(),

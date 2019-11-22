@@ -3,7 +3,8 @@ import mongoose from 'mongoose';
 import ProjectSchema from './project';
 import { ProjectSchemaType } from './types';
 
-const dbConnection = async () => {
+
+const dbConnection = async (): Promise<void> => {
   try {
     await mongoose.connect(process.env.DB_URL, {
       useNewUrlParser: true,
