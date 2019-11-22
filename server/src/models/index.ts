@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
-// eslint-disable-next-line no-unused-vars
-import ProjectSchema, { ProjectSchemaType } from './project';
+import ProjectSchema from './project';
+import { ProjectSchemaType } from './types';
 
 const dbConnection = async () => {
   try {

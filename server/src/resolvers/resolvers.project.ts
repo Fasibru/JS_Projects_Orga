@@ -1,39 +1,31 @@
-interface IModels {
-  id: string;
-  title: string;
-  dateCreated: string;
-  dateModified: string;
-  repositoryLink: string;
-  numberDependencies: number;
-  numberDevDependencies: number;
-  numberOutdatedDependencies: number;
-  numberOutdatedDevDependencies: number;
-  numberSecurityIssues: number;
-  description: string;
+import mongoose from 'mongoose';
+
+import { ProjectSchemaType } from '../models/types';
+
+interface Models {
+  Projects: mongoose.Model<ProjectSchemaType, {}>
 }
 
 const projectResolvers = {
-  Query: {
-    project: (
-      root: unknown,
-      { id }: { id: string },
-      { models }: { models: object },
-    ) => Object.values(models)[Number(id) - 1],
-    projects: (
-      root: unknown,
-      args: null,
-      { models } : { models: unknown },
-    ) => Object.values(models),
-  },
+  // Query: {
+  //   project: (
+  //     root: unknown,
+  //     { id }: { id: string },
+  //     { models }: { models: object },
+  //   ) => Object.values(models)[Number(id) - 1],
+  //   projects: (
+  //     root: unknown,
+  //     args: null,
+  //     { models } : { models: unknown },
+  //   ) => Object.values(models),
+  // },
   Mutation: {
     createProject: (
       root: unknown,
       { title }: { title: string},
-      { models }: { models: object },
+      { models }: { models: Models },
     ) => {
-      const id = Math.floor((Math.random() * 100));
       const project = {
-        id: String(id),
         title,
         dateCreated: new Date().toISOString(),
         dateModified: new Date().toISOString(),
@@ -46,10 +38,12 @@ const projectResolvers = {
         description: 'Dummy2',
       };
 
-      const stringId = String(id);
-
-      Object.assign(models, {
-        stringId: project,
+      const newProject = new models.Projects(project);
+      // const newProject = new Project(req.body);
+      newProject.save((err) => {
+        if (err) {
+          console.log('Error:', err.message);
+        }
       });
 
       return project;
