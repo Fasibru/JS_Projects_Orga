@@ -38,16 +38,13 @@ const projectResolvers = {
         description: 'Dummy2',
       };
 
-      const newProject = new models.Projects(project);
-
       let res: ProjectUpdateResponseType;
       try {
         res = {
           success: true,
           message: `Project "${title}" successfully created.`,
-          project: await newProject.save(),
+          project: await new models.Projects(project).save(),
         };
-        throw new Error();
       } catch (error) {
         res = {
           success: false,
