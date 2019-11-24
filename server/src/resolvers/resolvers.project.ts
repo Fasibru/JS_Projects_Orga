@@ -20,11 +20,11 @@ const projectResolvers = {
   //   ) => Object.values(models),
   // },
   Mutation: {
-    createProject: (
+    createProject: async (
       root: unknown,
       { title }: { title: string},
       { models }: { models: Models },
-    ): ProjectType => {
+    ): Promise<ProjectType> => {
       const project = {
         title,
         dateCreated: new Date().toISOString(),
@@ -39,14 +39,17 @@ const projectResolvers = {
       };
 
       const newProject = new models.Projects(project);
-      // const newProject = new Project(req.body);
-      newProject.save((err) => {
-        if (err) {
-          console.log('Error:', err.message);
-        }
-      });
 
-      return project;
+
+      let res;
+      try {
+        res = await newProject.save();
+      } catch (error) {
+        console.log('Error:', error.message);
+        // res = {};
+      }
+
+      return res;
     },
   },
 };
