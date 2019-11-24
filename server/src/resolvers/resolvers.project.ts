@@ -1,24 +1,30 @@
 import mongoose from 'mongoose';
 
-import { ProjectSchemaType, ProjectUpdateResponseType } from '../models/types';
+import { ProjectType, ProjectSchemaType, ProjectUpdateResponseType } from '../models/types';
 
 interface Models {
   Projects: mongoose.Model<ProjectSchemaType, {}>;
 }
 
 const projectResolvers = {
-  // Query: {
-  //   project: (
-  //     root: unknown,
-  //     { id }: { id: string },
-  //     { models }: { models: object },
-  //   ) => Object.values(models)[Number(id) - 1],
-  //   projects: (
-  //     root: unknown,
-  //     args: null,
-  //     { models } : { models: unknown },
-  //   ) => Object.values(models),
-  // },
+  Query: {
+    project: async (
+      root: unknown,
+      { id }: { id: string },
+      { models }: { models: Models },
+    ): Promise<ProjectType> => {
+      const project = await models.Projects.findById(id);
+      return project;
+    },
+    projects: async (
+      root: unknown,
+      args: null,
+      { models }: { models: Models },
+    ): Promise<Array<ProjectType>> => {
+      const projects = await models.Projects.find();
+      return projects;
+    },
+  },
   Mutation: {
     createProject: async (
       root: unknown,
@@ -48,7 +54,7 @@ const projectResolvers = {
       } catch (error) {
         res = {
           success: false,
-          message: `Project "${title}" could not be created.`,
+          message: error.message,
           project: {
             _id: '',
             title,
