@@ -28,7 +28,6 @@ const projectSchema = gql`
 
   input ProjectInput {
     title: String
-    dateCreated: String
     dateModified: String
     repositoryLink: String
     numberDependencies: Int
