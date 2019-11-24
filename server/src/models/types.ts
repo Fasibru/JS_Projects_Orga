@@ -15,6 +15,7 @@ export interface ProjectSchemaType extends Document {
 }
 
 export interface ProjectType {
+  _id: string;
   title: string;
   dateCreated: string;
   dateModified: string;
@@ -25,4 +26,10 @@ export interface ProjectType {
   numberOutdatedDevDependencies: number;
   numberSecurityIssues: number;
   description: string;
+}
+
+export interface ProjectUpdateResponseType {
+  success: boolean;
+  message: string;
+  project: ProjectType;
 }

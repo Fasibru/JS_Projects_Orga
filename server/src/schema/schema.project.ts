@@ -20,6 +20,12 @@ const projectSchema = gql`
     description: String
   }
 
+  type ProjectUpdateResponse {
+    success: Boolean!
+    message: String!
+    project: Project
+  }
+
   input ProjectInput {
     title: String
     dateCreated: String
@@ -34,7 +40,7 @@ const projectSchema = gql`
   }
 
   extend type Mutation {
-    createProject(title: String!): Project!
+    createProject(title: String!): ProjectUpdateResponse!
     FOOdeleteProject(id: ID!): Boolean!
     FOOupdateProject(id: ID!, data: ProjectInput!): Project!
   }

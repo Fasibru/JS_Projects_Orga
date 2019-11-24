@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-import { ProjectType, ProjectSchemaType } from '../models/types';
+import { ProjectSchemaType, ProjectUpdateResponseType } from '../models/types';
 
 interface Models {
   Projects: mongoose.Model<ProjectSchemaType, {}>;
@@ -24,7 +24,7 @@ const projectResolvers = {
       root: unknown,
       { title }: { title: string},
       { models }: { models: Models },
-    ): Promise<ProjectType> => {
+    ): Promise<ProjectUpdateResponseType> => {
       const project = {
         title,
         dateCreated: new Date().toISOString(),
@@ -40,13 +40,24 @@ const projectResolvers = {
 
       const newProject = new models.Projects(project);
 
-
-      let res;
+      let res: ProjectUpdateResponseType;
       try {
-        res = await newProject.save();
+        res = {
+          success: true,
+          message: `Project "${title}" successfully created.`,
+          project: await newProject.save(),
+        };
+        throw new Error();
       } catch (error) {
-        console.log('Error:', error.message);
-        // res = {};
+        res = {
+          success: false,
+          message: `Project "${title}" could not be created.`,
+          project: {
+            _id: '',
+            title,
+            ...project,
+          },
+        };
       }
 
       return res;
