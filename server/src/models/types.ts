@@ -33,3 +33,8 @@ export interface ProjectUpdateResponseType {
   message: string;
   project: ProjectType;
 }
+
+export interface ProjectDeleteResponseType {
+  success: boolean;
+  message: string;
+}

@@ -1,6 +1,11 @@
 import mongoose from 'mongoose';
 
-import { ProjectType, ProjectSchemaType, ProjectUpdateResponseType } from '../models/types';
+import {
+  ProjectType,
+  ProjectDeleteResponseType,
+  ProjectSchemaType,
+  ProjectUpdateResponseType,
+} from '../models/types';
 
 interface Models {
   Projects: mongoose.Model<ProjectSchemaType, {}>;
@@ -64,6 +69,30 @@ const projectResolvers = {
       }
 
       return res;
+    },
+    deleteProject: async (
+      root: unknown,
+      { id }: { id: string},
+      { models }: { models: Models },
+    ): Promise<ProjectDeleteResponseType> => {
+      try {
+        const res = await models.Projects.findByIdAndDelete(id);
+        if (res === null) {
+          return {
+            success: false,
+            message: 'Project not found.',
+          };
+        }
+        return {
+          success: true,
+          message: 'Project successfully deleted.',
+        };
+      } catch (error) {
+        return {
+          success: false,
+          message: error.message,
+        };
+      }
     },
   },
 };
