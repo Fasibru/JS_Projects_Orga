@@ -23,7 +23,7 @@ const projectSchema = gql`
   type ProjectUpdateResponse {
     success: Boolean!
     message: String!
-    project: Project
+    project: Project!
   }
 
   type ProjectDeleteResponse {
@@ -32,7 +32,7 @@ const projectSchema = gql`
   }
 
   input ProjectInput {
-    title: String
+    title: String!
     dateModified: String
     repositoryLink: String
     numberDependencies: Int
@@ -44,7 +44,7 @@ const projectSchema = gql`
   }
 
   extend type Mutation {
-    createProject(title: String!): ProjectUpdateResponse!
+    createProject(data: ProjectInput!): ProjectUpdateResponse!
     deleteProject(id: ID!): ProjectDeleteResponse!
     updateProject(id: ID!, data: ProjectInput!): ProjectUpdateResponse!
   }
