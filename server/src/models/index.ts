@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
-import ProjectSchema from './project';
-import { ProjectSchemaType } from './types';
+import ProjectSchema from './models.project';
+import { ProjectSchemaType } from './models.types';
 
 
 const dbConnection = async (): Promise<void> => {

@@ -5,7 +5,7 @@ import {
   ProjectDeleteResponseType,
   ProjectSchemaType,
   ProjectUpdateResponseType,
-} from '../models/types';
+} from '../models/models.types';
 
 interface Models {
   Projects: mongoose.Model<ProjectSchemaType, {}>;
