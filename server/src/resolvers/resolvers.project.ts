@@ -94,6 +94,40 @@ const projectResolvers = {
         };
       }
     },
+    updateProject: async (
+      root: unknown,
+      { id, data }: { id: string; data: ProjectType },
+      { models }: { models: Models },
+    ): Promise<ProjectUpdateResponseType> => {
+      try {
+        const res = await models.Projects.findOneAndUpdate(
+          { _id: id },
+          {
+            ...data,
+            dateModified: new Date().toISOString(),
+          },
+          { new: true },
+        );
+        if (res === null) {
+          return {
+            success: false,
+            message: `Project "${data.title}" does not exist.`,
+            project: res,
+          };
+        }
+        return {
+          success: true,
+          message: `Project "${data.title}" successfully updated.`,
+          project: res,
+        };
+      } catch (error) {
+        return {
+          success: false,
+          message: `Error while updating project "${data.title}".\n Error: ${error.message}`,
+          project: data,
+        };
+      }
+    },
   },
 };
 

@@ -46,7 +46,7 @@ const projectSchema = gql`
   extend type Mutation {
     createProject(title: String!): ProjectUpdateResponse!
     deleteProject(id: ID!): ProjectDeleteResponse!
-    FOOupdateProject(id: ID!, data: ProjectInput!): Project!
+    updateProject(id: ID!, data: ProjectInput!): ProjectUpdateResponse!
   }
 `;
 
