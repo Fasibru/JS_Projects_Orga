@@ -2,19 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const Wrapper = styled.div`
-  font-family: arial;
-  display: flex;
-  margin-top: 5px;
-  margin-bottom: 5px;
-`;
-
-const ProjectItem = styled.div`
-  flex: 1;
-  padding-left: 5px;
-  padding-right: 5px;
-`;
-
 export interface SingleProjectProps {
   title: string;
   dateCreated: string;
@@ -37,6 +24,18 @@ const SingleProject: React.SFC<SingleProjectProps> = ({
     </Wrapper>
   );
 };
+
+const Wrapper = styled.div`
+  display: flex;
+  margin-top: 5px;
+  margin-bottom: 5px;
+`;
+
+const ProjectItem = styled.div`
+  flex: 1;
+  padding-left: 5px;
+  padding-right: 5px;
+`;
 
 SingleProject.propTypes = {
   title: PropTypes.string.isRequired,
