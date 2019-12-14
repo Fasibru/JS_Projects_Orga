@@ -9,6 +9,7 @@ const dbConnection = async (): Promise<void> => {
     await mongoose.connect(process.env.DB_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
+      useFindAndModify: false,
     });
     console.log('Connection to MongoDB established');
   } catch (error) {

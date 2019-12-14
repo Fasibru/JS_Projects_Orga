@@ -13,6 +13,7 @@ const GET_PROJECTS = gql`
       _id
       title
       dateCreated
+      dateModified
     }
   }
 `;
@@ -31,6 +32,7 @@ const ProjectsList: React.SFC = () => {
           key={project._id}
           title={project.title}
           dateCreated={project.dateCreated}
+          dateModified={project.dateModified}
         />
       ))}
     </Wrapper>
