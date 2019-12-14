@@ -1,5 +1,19 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
+const Wrapper = styled.div`
+  font-family: arial;
+  display: flex;
+  margin-top: 5px;
+  margin-bottom: 5px;
+`;
+
+const ProjectItem = styled.div`
+  flex: 1;
+  padding-left: 5px;
+  padding-right: 5px;
+`;
 
 export interface SingleProjectProps {
   title: string;
@@ -10,12 +24,17 @@ const SingleProject: React.SFC<SingleProjectProps> = ({
   title,
   dateCreated,
 }) => {
-  const date = new Date(Number(dateCreated)).toLocaleDateString();
+  const dateOptions = {
+    year: 'numeric',
+    month: 'numeric',
+    day: '2-digit',
+  };
+  const date = new Date(Number(dateCreated)).toLocaleDateString('arab', dateOptions);
   return (
-    <Fragment>
-      <div>{date}</div>
-      <div>{title}</div>
-    </Fragment>
+    <Wrapper>
+      <ProjectItem>{date}</ProjectItem>
+      <ProjectItem>{title}</ProjectItem>
+    </Wrapper>
   );
 };
 
