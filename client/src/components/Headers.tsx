@@ -9,12 +9,12 @@ const Headers: React.SFC = () => (
   </HeaderWrapper>
 );
 
-const HeaderWrapper = styled.div`
+export const HeaderWrapper = styled.div`
   display: flex;
   font-weight: bold;
 `;
 
-const HeaderItem = styled.div`
+export const HeaderItem = styled.div`
   flex: 1;
 `;
 

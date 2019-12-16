@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test <Headers /> Snapshot is consistent 1`] = `
+<styled.div>
+  <styled.div>
+    Name
+  </styled.div>
+  <styled.div>
+    Created
+  </styled.div>
+  <styled.div>
+    Last modified
+  </styled.div>
+</styled.div>
+`;
