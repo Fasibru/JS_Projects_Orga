@@ -23,23 +23,33 @@ const SingleProject: React.SFC<SingleProjectProps> = ({
 
   return (
     <SingleProjectWrapper>
+      <ProjectLink href="">{title}</ProjectLink>
       <ProjectItem>{dateCreatedFormatted}</ProjectItem>
       <ProjectItem>{dateModifiedFormatted}</ProjectItem>
-      <ProjectItem>{title}</ProjectItem>
     </SingleProjectWrapper>
   );
 };
 
 const SingleProjectWrapper = styled.div`
   display: flex;
-  margin-top: 5px;
-  margin-bottom: 5px;
+`;
+
+const ProjectLink = styled.a`
+  flex: 1;
+  padding: 5px;
+  border-left: 1px solid black;
+  :last-child {
+    border-right: 1px solid black;
+  }
 `;
 
 const ProjectItem = styled.div`
   flex: 1;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding: 5px;
+  border-left: 1px solid black;
+  :last-child {
+    border-right: 1px solid black;
+  }
 `;
 
 SingleProject.propTypes = {

@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import SingleProject from '../components/SingleProject';
 import Headers from '../components/Headers';
 import { ProjectType } from '../types/types';
+import { colorSnow } from '../styles/colors';
 
 const GET_PROJECTS = gql`
   query {
@@ -25,7 +26,7 @@ const ProjectsList: React.SFC = () => {
   if (error) return <h1>Error: {error.message}</h1>;
 
   return (
-    <Wrapper>
+    <ProjectsListWrapper>
       <Headers />
       {data.projects.map((project: ProjectType) => (
         <SingleProject
@@ -35,14 +36,15 @@ const ProjectsList: React.SFC = () => {
           dateModified={project.dateModified}
         />
       ))}
-    </Wrapper>
+    </ProjectsListWrapper>
   );
 };
 
-const Wrapper = styled.section`
+const ProjectsListWrapper = styled.section`
   display: flex;
   flex-direction: column;
   font-family: Arial, Helvetica, sans-serif;
+  background-color: ${colorSnow};
 `;
 
 export default ProjectsList;

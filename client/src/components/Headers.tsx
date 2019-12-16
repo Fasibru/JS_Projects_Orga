@@ -2,14 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Headers: React.SFC = () => (
-  <Wrapper>
+  <HeaderWrapper>
+    <HeaderItem>Name</HeaderItem>
     <HeaderItem>Created</HeaderItem>
     <HeaderItem>Last modified</HeaderItem>
-    <HeaderItem>Title</HeaderItem>
-  </Wrapper>
+  </HeaderWrapper>
 );
 
-const Wrapper = styled.div`
+const HeaderWrapper = styled.div`
   display: flex;
   font-weight: bold;
 `;
