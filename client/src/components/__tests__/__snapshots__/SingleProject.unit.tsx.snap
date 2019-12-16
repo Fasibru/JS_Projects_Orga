@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test <Headers /> Snapshot is consistent 1`] = `
+<styled.div>
+  <styled.a
+    href=""
+  >
+    Test Title
+  </styled.a>
+  <styled.div>
+    2019-11-24
+  </styled.div>
+  <styled.div>
+    2019-11-24
+  </styled.div>
+</styled.div>
+`;
+
+exports[`Test <SingleProject /> Snapshot is consistent 1`] = `
+<styled.div>
+  <styled.a
+    href=""
+  >
+    Test Title
+  </styled.a>
+  <styled.div>
+    2019-11-24
+  </styled.div>
+  <styled.div>
+    2019-11-24
+  </styled.div>
+</styled.div>
+`;

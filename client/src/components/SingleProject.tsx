@@ -34,7 +34,7 @@ const SingleProjectWrapper = styled.div`
   display: flex;
 `;
 
-const ProjectLink = styled.a`
+export const ProjectLink = styled.a`
   flex: 1;
   padding: 5px;
   border-left: 1px solid black;
@@ -43,7 +43,7 @@ const ProjectLink = styled.a`
   }
 `;
 
-const ProjectItem = styled.div`
+export const ProjectItem = styled.div`
   flex: 1;
   padding: 5px;
   border-left: 1px solid black;
